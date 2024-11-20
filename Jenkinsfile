@@ -21,7 +21,7 @@ pipeline {
             steps {
                 withCodeQL(codeql: 'codeql') {
                     sh 'codeql database create my-database --language=java --source-root=. --overwrite '
-                    sh 'codeql database analyze my-database --format=sarifv2.1.0 --output=results.csv'
+                    sh 'codeql database analyze my-database --format=csv --output=results.csv'
                 }
             }
         post {
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 withCodeQL(codeql: 'codeql') {
                     sh 'codeql database create my-database --language=java --source-root=. --overwrite '
-                    sh 'codeql database analyze my-database --format=sarifv2.1.0 --output=results.json'
+                    sh 'codeql database analyze my-database --format=json --output=results.json'
                 }
             }
         post {
