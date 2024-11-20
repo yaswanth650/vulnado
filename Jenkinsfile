@@ -14,6 +14,7 @@ pipeline {
         post {
         always {
             archiveArtifacts artifacts: 'results.sarif', allowEmptyArchive: true
+            recordIssues tools: [sarif(pattern: 'results.sarif')]
         }
        }
     }
@@ -40,6 +41,7 @@ pipeline {
         post {
         always {
             archiveArtifacts artifacts: 'results1.sarif', allowEmptyArchive: true
+            recordIssues tools: [sarif(pattern: 'results1.sarif')]
         }
        }
     }
