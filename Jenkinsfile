@@ -34,12 +34,12 @@ pipeline {
             steps {
                 withCodeQL(codeql: 'codeql') {
                     sh 'codeql database create my-database --language=java --source-root=. --overwrite '
-                    sh 'codeql database analyze my-database --format=json --output=results.json'
+                    sh 'codeql database analyze my-database --format=sarif-latest --output=results1.sarif'
                 }
             }
         post {
         always {
-            archiveArtifacts artifacts: 'results.json', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'results1.sarif', allowEmptyArchive: true
         }
        }
     }
